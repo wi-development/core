@@ -41,7 +41,7 @@ class ReferenceTranslation extends Model
 
 	public function mediatranslation()
 	{
-		return $this->belongsToMany('App\MediaTranslation', 'referencetranslation_mediatranslation', 'referencetranslation_id','mediatranslation_id')
+		return $this->belongsToMany('WI\Media\MediaTranslation', 'referencetranslation_mediatranslation', 'referencetranslation_id','mediatranslation_id')
 			->withPivot('field_name','order_by_number')
 			->where('locale_id',config('app.locale_id'))
 			->orderBy('pivot_order_by_number','ASC');
@@ -63,13 +63,13 @@ class ReferenceTranslation extends Model
 
 	public function sitemaplistbyparentid()
 	{
-		return $this->hasOne('App\Templates\References\SitemapByParentId','referencetranslation_id');
+		return $this->hasOne('WI\Core\Templates\References\SitemapByParentId','referencetranslation_id');
 	}
 
 	//parentidandi
 	public function sitemaplistbyids()
 	{
-		return $this->hasOne('App\Templates\References\SitemapByIds','referencetranslation_id');
+		return $this->hasOne('WI\Core\Templates\References\SitemapByIds','referencetranslation_id');
 	}
 
 }

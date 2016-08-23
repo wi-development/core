@@ -45,7 +45,8 @@ class CoreServiceProvider extends ServiceProvider
 
 		$this->publishes([
 			__DIR__.'/views' => base_path('resources/views/admin/core'),
-			__DIR__.'/config/core.php' => config_path('wi/core.php')
+			__DIR__.'/config/core.php' => config_path('wi/core.php'),
+			__DIR__.'/app' => base_path('app'),
 		],'core');
 	}
 

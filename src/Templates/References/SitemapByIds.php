@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Templates\References;
+namespace WI\Core\Templates\References;
 
 use Illuminate\Database\Eloquent\Model;
 
