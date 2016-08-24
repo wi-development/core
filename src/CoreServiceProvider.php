@@ -48,6 +48,8 @@ class CoreServiceProvider extends ServiceProvider
 			__DIR__.'/config/core.php' => config_path('wi/core.php'),
 			__DIR__.'/app' => base_path('app'),
 		],'core');
+		//php artisan vendor:publish --tag=core
+		//php artisan vendor:publish --tag=core --force;
 	}
 
 	/**

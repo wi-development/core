@@ -571,6 +571,15 @@ class SitemapController extends Controller
 
 
 
+
+
+
+
+
+
+
+
+
 	/*KAN WEG:*/
 
     public function storeSession(Request $request){
