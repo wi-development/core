@@ -1,6 +1,7 @@
 <?php
 #Route::get('/backStages', 'DashboardController@index');
 Route::get('/core',                         ['as' => 'core.index'               ,'uses' => 'CoreController@index']);
+Route::get('/corex',                         ['as' => 'core.indexx'               ,'uses' => 'CoreController@indexx']);
 
 
 
