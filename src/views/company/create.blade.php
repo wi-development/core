@@ -1,13 +1,10 @@
 @extends('dashboard::layouts.master')
-
 @section('content')
 
-
-    {{--dc($viewInfo['mainHeader'])--}}
     <!--Page Title-->
     <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
     <div id="page-title">
-        <h1 class="page-header text-overflow">Bookmark {{--$viewInfo['mainHeader']--}} wijzigen</h1>
+        <h1 class="page-header text-overflow">Bedrijf toevoegen</h1>
 
         <!--Searchbox-->
         <div class="searchbox">
@@ -26,10 +23,9 @@
     <!--Breadcrumb-->
     <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
     <ol class="breadcrumb">
-        <li><a href="{{ route('admin::dashboard') }}">dashboard</a></li>
-        <li class="hidden"><a href="{{ route('admin::reference.index') }}">template overzicht</a></li>
-        <li><a href="{{ route('admin::reference.component.index',['component_name' => 'bookmarks']) }}">bookmark overzicht</a></li>
-        <li class="active">bookmark wijzigen</li>
+        <li><a href="{{route('admin::dashboard')}}">Dashboard</a></li>
+        <li><a href="{{route('admin::company.all.index')}}">Alle bedrijven</a></li>
+        <li class="active">pagina wijzigen</li>
     </ol>
     <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
     <!--End breadcrumb-->
@@ -42,14 +38,16 @@
     <div id="page-content">
         <div class="row">
 
-            <?php
-            $frmHeader = "Wijzigen '{$reference->translations->first()->name}' bookmark";
-            ?>
-            @include('errors.list')
             <!-- BASIC FORM ELEMENTS -->
-            {{ Form::model($reference,['method'=>'PATCH', 'route'=>array('admin::reference.update',$reference->id), 'class'=>'form-horizontal form-padding']) }}
-                {{--@include('errors.reference')--}}
-                @include('core::reference.partials.form', ['submitButtonText' => 'Publiceren','frmHeader' => ''.$frmHeader.''])
+            <?php
+            $frmHeader = "Bedrijfsgegevens";
+            ?>
+
+            {{ Form::open(['route'=>array('admin::company.store'), 'class'=>'forxm-horizontal foxrm-padding']) }}
+
+            @include('core::company.partials.form', ['submitButtonText' => 'Bedrijf toevoegen','frmHeader'=>''.$frmHeader.''])
+
+
             {{ Form::close() }}
             <!-- END BASIC FORM ELEMENTS -->
 
@@ -58,5 +56,6 @@
     <!--===================================================-->
     <!--End page content-->
 
-@endsection
 
+
+@endsection

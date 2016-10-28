@@ -70,6 +70,8 @@ class DbReferenceRepository extends DbRepository implements ReferenceRepositoryI
         $this->resetKeyTranslationCollectionByLocaleIdentifier($reference);
         return $reference;
     }
+
+
 }
 
 

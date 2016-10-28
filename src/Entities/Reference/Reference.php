@@ -15,7 +15,7 @@ class Reference extends Model
 
     //
     public function translations(){
-        return $this->hasMany('WI\Core\Entities\Reference\Referencetranslation');
+        return $this->hasMany('WI\Core\Entities\Reference\ReferenceTranslation');
     }
 
     public function translation()
@@ -48,6 +48,10 @@ class Reference extends Model
         return $this->belongsTo('WI\Core\Entities\ReferenceType\ReferenceType','referencetype_id');			//foreign key belongsTo
     }
 
+
+	public function updated_by_user(){
+		return $this->belongsTo('WI\User\User','updated_by_user_id');
+	}
 
 
     //when locale is enabled after create
@@ -115,6 +119,7 @@ class Reference extends Model
     }
 
     public function getReferenceTypetListAttribute(){
+    	//dc($this->components);
         return $this->components->lists('id')->all();
     }
 

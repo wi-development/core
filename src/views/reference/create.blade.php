@@ -5,7 +5,7 @@
         <!--Page Title-->
         <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
         <div id="page-title">
-            <h1 class="page-header text-overflow">Pagina wijzigen</h1>
+            <h1 class="page-header text-overflow">Bookmark {{--$viewInfo['mainHeader']--}} toevoegen</h1>
 
             <!--Searchbox-->
             <div class="searchbox">
@@ -25,8 +25,10 @@
         <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
         <ol class="breadcrumb">
             <li><a href="{{route('admin::dashboard')}}">Dashboard</a></li>
-            <li><a href="{{route('admin::component.index')}}">Alle components</a></li>
-            <li class="active">reference toevoegen</li>
+            <li class="hidden"><a href="{{route('admin::component.index')}}">Alle components</a></li>
+            <li><a href="{{ route('admin::reference.component.index',['component_name' => 'bookmarks']) }}">bookmark overzicht</a></li>
+            <li class="active">bookmark wijzigen</li>
+            <li class="hidden active">reference toevoegen</li>
         </ol>
         <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
         <!--End breadcrumb-->
@@ -39,7 +41,7 @@
         <div id="page-content">
             <div class="row">
                 <?php
-                $frmHeader = "Reference toevoegen";
+                $frmHeader = "Bookmark toevoegen";
                 ?>
                 <!-- BASIC FORM ELEMENTS -->
                 @if(isset($reference->test_dummy_data) && ($reference->test_dummy_data)) {{--for dummy data--}}

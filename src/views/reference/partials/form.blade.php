@@ -82,10 +82,7 @@
                             </div>
                             -->
                             {{--$reference->referencetype--}}
-
                             @include('core::reference.'.$reference->referencetype->db_template_name.'')
-
-
                             {{--$post_type--}}
                             {{--@include('admin.sitemap.'.$template->db_table_name.'')--}}
 
@@ -199,10 +196,132 @@
 
 @section('css.head')
     @include('core::partials.head_tinymce')
+    <script>
+        var apiRoute = '{{route('admin::api.media.modal')}}';
+        var formMediaTemplateUrl = '/js/wi/angular/form_media_field.html';
+        var modalCreateMediaTemplateUrl = '/js/wi/angular/dropzone1.php';
+
+
+        ///admin/media/modal_select_media
+        //var modalSelectMediaUrl = '/admin/media/modal_select_media';
+        var modalSelectMediaUrl = '{{route('admin::api.modal.select.media')}}';
+
+        var modalCreateMediaUrl = '{{route('admin::api.modal.create.media')}}';
+        var mediaUploadUrl = '{{route('admin::media.upload')}}';
+
+        var formMediaFieldEditMediaUrl = '{{route('admin::media.index')}}';
+
+
+
+        //alert(modalSelectMediaUrl);
+
+        //templateUrl: '/admin/media/modal_select_media',
+        //alert(apiRoute);
+    </script>
+    <script src="{{config('wi.dashboard.theme_path')}}/js/jquery_ui_1_11_4/jquery-ui.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-animate.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-sanitize.js"></script>
+    <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.14.3.js"></script>
+
+    <script src="/js/wi/angular/angular-dragdrop.js"></script>
+    <script src="/js/wi/angular/myAngular.js"></script>
+    <script src="/js/wi-form.js"></script>
 @endsection
 
 @section('scripts.footer')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.2.0/dropzone.js"></script>
+    <script>
+
+        /*
+        //
+
+        $(function () {
+            $window = $(window), $("body.home").length && (tinymce.init({
+                selector: "textarea",
+                width: 752,
+                height: 261,
+                resize: 1,
+                plugins: ["advlist", "autolink", "lists", "link", "image", "charmap", "print", "preview", "anchor", "searchreplace", "visualblocks", "code", "fullscreen", "insertdatetime", "media", "table", "contextmenu", "paste", "imagetools"],
+                toolbar: "undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist | link image"
+            }), tinymce.init({
+                selector: "textarea",
+                width: "100%",
+                resize: !1,
+                plugins: ["autoresize", "advlist", "autolink", "lists", "link", "image", "charmap", "print", "preview", "anchor", "searchreplace", "visualblocks", "code", "fullscreen", "insertdatetime", "media", "table", "contextmenu", "paste", "imagetools"],
+                autoresize_max_height: 161,
+                menubar: !1,
+                elementpath: !1,
+                statusbar: !1,
+                toolbar: "bold italic | alignleft aligncenter alignright alignjustify",
+                content_style: "body { padding-bottom: 0 !important; }"
+            })), $("body.pricing").length && (tinymce.PluginManager.load("moxiemanager", "/pro-demo/moxiemanager/plugin.min.js"), tinymce.PluginManager.load("powerpaste", "/pro-demo/powerpaste/plugin.min.js"), tinymce.PluginManager.load("tinymcespellchecker", "/pro-demo/tinymcespellchecker/plugin.min.js"), tinymce.PluginManager.load("a11ychecker", "/pro-demo/a11ychecker/plugin.min.js"), tinymce.PluginManager.load("mentions", "/pro-demo/mentions/plugin.min.js"), tinymce.init({
+                selector: "textarea",
+                plugins: ["advlist autolink lists link image charmap print preview anchor", "searchreplace visualblocks code fullscreen", "insertdatetime media table contextmenu moxiemanager imagetools powerpaste tinymcespellchecker a11ychecker mentions"],
+                mentions_fetch: function (e, n) {
+                    var t = ["Andrew Roberts", "Amy Chen", "Tim Thatcher", "Jeff Olson", "John Hummelstad", "David Spreng", "Gary Kovacs", "Misha Logvinov", "Michael Fromin", "Lisa Newsome", "Ketaki Joshi", "Jennifer Knowlton", "Wynne Vick", "Robert Collings", "Jessica Lee", "Colin Westacott", "Ken Hodges", "Ivan White", "Richard Garcia", "Shirin Abbaszadeh", "Joakim Lindkvist", "Johan Sörlin", "Damien Fitzpatrick", "Brett Henderson", "David Wood", "Andrew Herron", "Jack Mason", "Dylan Just", "Morgan Smith", "Malcolm Sharman", "Mark Terry", "Mike Chau", "Maurizio Napoleoni", "Mark Ludlow", "Andreas Huemer", "Joshua Haines", "George Wilson", "Luke Butt", "David Sakko", "Jeremy Carver", "Dayne Lean", "James Johnson", "Ben Kolera", "Sneha Choudhary", "Anna Harrison", "Bill Roberts", "Therese Lavelle", "Irene Goot", "Mai Tran", "John Doe", "Jane Doe"];
+                    t = $.map(t, function (e) {
+                        var n = e.replace(/ /g, "").toLowerCase();
+                        return {id: n, name: n, fullName: e}
+                    }), t = $.grep(t, function (n) {
+                        return 0 === n.name.indexOf(e.term)
+                    }), n(t)
+                },
+                toolbar: "insertfile a11ycheck undo redo | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist | link image",
+                autosave_ask_before_unload: !1,
+                content_style: "h1 {font-size: 32px; color: #0089ee}",
+                width: 752,
+                height: 261,
+                resize: !1,
+                powerpaste_allow_local_images: !0,
+                spellchecker_rpc_url: "https://spelling.tinymce.com/ephox-spelling",
+                spellchecker_api_key: "h22wb7h8xi78b4fyo46hhx5k7fbh46vt5f6yqmvd492iy00c"
+            })), $(".not-found").length && ga("send", {
+                hitType: "event",
+                eventCategory: "Website",
+                eventAction: "404",
+                eventLabel: document.location.href
+            }), $("body.custom-builds").length && ($(".checkbox").checkbox(), $(".switch")["switch"](), $(".select-none").on("click", function () {
+                $(this).siblings(".checkbox").removeClass("selected")
+            }), $(".select-all").on("click", function () {
+                $(this).siblings(".checkbox").addClass("selected")
+            }), $(".custom-builds-submit-row button").on("click", function () {
+                var e = {core: "core_standalone"};
+                $(".custom-builds .checkbox").each(function () {
+                    var n = $(this);
+                    n.attr("data-name") && n.hasClass("selected") && (e[n.attr("data-name")] = !0)
+                });
+                var n = $(".custom-builds-form").empty();
+                Object.keys(e).forEach(function (t) {
+                    $('<input type="hidden" value="' + e[t] + '" name="' + t + '">').appendTo(n)
+                }), n.submit()
+            })), $("body.language-packages").length && ($(".checkbox").checkbox(), $("tr").on("click", function (e) {
+                "TD" === $(e.target).prop("tagName") && $(this).find(".checkbox").toggleClass("selected")
+            }), $(".select-none").on("click", function () {
+                $(".checkbox").removeClass("selected")
+            }), $(".select-all").on("click", function () {
+                $(".checkbox").addClass("selected")
+            }), $(".language-packages-submit-row button:last-child").on("click", function () {
+                var e = $(".language-packages-form").empty();
+                $(".checkbox").each(function () {
+                    var n = $(this);
+                    n.hasClass("selected") && $('<input type="hidden" value="' + n.attr("data-value") + '" name="' + n.attr("data-name") + '">').appendTo(e)
+                }), e.submit()
+            })), $(".download-track").on("click", function () {
+                ga("send", {
+                    hitType: "event",
+                    eventCategory: "Website",
+                    eventAction: "download",
+                    eventLabel: $(this).attr("data-version")
+                })
+            }), $(".click-track").on("click", function () {
+                ga("send", {hitType: "event", eventCategory: "Website", eventAction: "click", eventLabel: $(this).text()})
+            })
+        });
+
+        */
+
+    </script>
 @endsection
 
 

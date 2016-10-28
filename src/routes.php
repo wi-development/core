@@ -86,6 +86,27 @@ Route::get('/core',                         ['as' => 'core.index'               
     //add form
     Route::get('/reference/create',         ['as' => 'reference.create',    'uses' => 'Entities\Reference\ReferenceController@selectReferenceTypeBeforeCreate']);
 
+/*
+ * CUSTOM (bookmarks)
+ * */
+
+	//index backStage/reference/bookmarks
+	Route::get('/reference/{component_name}',               ['as' => 'reference.component.index',           'uses' => 'Entities\Reference\ReferenceController@getComponentIndex']);
+	Route::get('/reference/{component_name}/data',         ['as' => 'reference.component.data',            'uses' => 'Entities\Reference\ReferenceController@componentIndexData']);
+	//Route::get('/reference/all/data',                           ['as' => 'reference.all.data',           'uses' => 'ReferenceController@allIndexData']);
+
+
+//Route::get('/charts',                                   ['as' => 'chart.all.index',          'uses' => 'ChartController@getAllIndex']);
+//Route::get('/chart/all/data',                           ['as' => 'chart.all.data',           'uses' => 'ChartController@allIndexData']);
+
+
+
+/*
+ * END CUSTOM
+ *
+ * */
+
+
 
     //edit form, called from sitemap
     Route::get('/reference/{id}/edit/{sitemap_id}',
@@ -96,6 +117,14 @@ Route::get('/core',                         ['as' => 'core.index'               
     Route::get('/reference/create/{sitemap_id}/{component_id}/{referencetype_id}',
                                             ['as' => 'reference.create.fromsitemap',
                                                                             'uses' => 'Entities\Reference\ReferenceController@createCalledFromSitemap']);
+
+
+
+	Route::get('/reference/create/{component_id}/{referencetype_id}',
+		['as' => 'reference.create.fromComponentIndex',
+			'uses' => 'Entities\Reference\ReferenceController@createCalledComponentIndex']);
+
+
 
 /*
 
@@ -119,5 +148,25 @@ Route::get('/core',                         ['as' => 'core.index'               
     Route::patch('/reference/{id}', 		['as' => 'reference.update'		,'uses' => 'Entities\Reference\ReferenceController@update']);
 
 
-    Route::delete('/reference/{id}', 	    ['as' => 'reference.destroy' 	,'uses' => 'Entities\Reference\ReferenceController@destroy']);
+    Route::delete('/reference/{id?}', 	    ['as' => 'reference.destroy' 	,'uses' => 'Entities\Reference\ReferenceController@destroy']);
 //});
+
+
+//COMPANY
+//index
+Route::get('/companiesORG', 			 ['as' => 'company.index'		,'uses' => 'Entities\Company\CompanyController@indexORG']);
+
+Route::get('/companies',                ['as' => 'company.all.index',           'uses' => 'Entities\Company\CompanyController@getAllIndex']);
+Route::get('/companies/all/data',            ['as' => 'company.all.data',       'uses' => 'Entities\Company\CompanyController@allIndexData']);
+
+//edit form
+Route::get('/company/{id}/edit',	    ['as' => 'company.edit'		,'uses' => 'Entities\Company\CompanyController@edit']);
+
+//add form
+Route::get('/company/create', 		['as' => 'company.create'		,'uses' => 'Entities\Company\CompanyController@create']);
+
+//database
+Route::post('/company', 			    ['as' => 'company.store'		,'uses' => 'Entities\Company\CompanyController@store']);
+Route::patch('/company/{id}', 		['as' => 'company.update'		,'uses' => 'Entities\Company\CompanyController@update']);
+//Route::put('/component/{id}', 		['as' => 'component.update.put' ,'uses' => 'ComponentController@update']);//??
+Route::delete('/company/{id?}', 	    ['as' => 'company.destroy' 	,'uses' => 'Entities\Company\CompanyController@destroy']);
